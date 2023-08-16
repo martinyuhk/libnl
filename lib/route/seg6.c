@@ -75,11 +75,13 @@ void seg6_dump_srh(struct nl_dump_params *dp, struct ipv6_sr_hdr *srh)
 
 	nl_dump(dp, "segs %d [ ", srh->first_segment + 1);
 	for (i = srh->first_segment; i >= 0; i--) {
-		nl_dump(dp, "%s", _nl_inet_ntop(AF_INET6, &srh->segments[i], addr));
+		nl_dump(dp, "%s",
+			_nl_inet_ntop(AF_INET6, &srh->segments[i], addr));
 	}
 	nl_dump(dp, "] ");
 	if (sr_has_hmac(srh)) {
-		offset = IPV6_EXTHDR_LEN(srh->hdrlen) - sizeof(struct sr6_tlv_hmac);
+		offset = IPV6_EXTHDR_LEN(srh->hdrlen) -
+			 sizeof(struct sr6_tlv_hmac);
 		tlv = (struct sr6_tlv_hmac *)((char *)srh + offset);
 
 		nl_dump(dp, "hmac %X ", ntohl(tlv->hmackeyid));
