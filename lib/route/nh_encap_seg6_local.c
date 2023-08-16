@@ -13,7 +13,6 @@
 #include "nl-route.h"
 #include "nexthop-encap.h"
 #include "seg6.h"
-
 #include "nl-aux-core/nl-core.h"
 
 #ifndef BIT

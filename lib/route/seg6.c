@@ -2,9 +2,9 @@
 
 #include "nl-default.h"
 
-#include <stdbool.h>
 #include <linux/seg6_hmac.h>
 #include <linux/ipv6.h>
+
 #include <netlink/utils.h>
 
 #include "seg6.h"

@@ -2,10 +2,6 @@
 
 #include "nl-default.h"
 
-#include "nl-route.h"
-#include "nexthop-encap.h"
-#include "seg6.h"
-
 #include <linux/lwtunnel.h>
 #include <linux/seg6_iptunnel.h>
 
@@ -13,6 +9,9 @@
 #include <netlink/route/nexthop.h>
 
 #include "nl-priv-dynamic-core/nl-core.h"
+#include "nl-route.h"
+#include "nexthop-encap.h"
+#include "seg6.h"
 
 static int seg6_encap_build_msg(struct nl_msg *msg, void *priv)
 {
