@@ -12,6 +12,7 @@
 /**
  * Copied from Linux 6.4: seg6_validate_srh:net/ipv6/seg6.c
  * Author: David Lebrun <david.lebrun@uclouvain.be>
+ *         Ahmed Abdelsalam <ahabdels@gmail.com>
  */
 bool seg6_validate_srh(struct ipv6_sr_hdr *srh, int len, bool reduced)
 {
