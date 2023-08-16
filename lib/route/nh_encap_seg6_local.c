@@ -802,7 +802,7 @@ struct seg6_action_param {
 	void (*destroy)(struct seg6_local_lwt *slwt);
 };
 
-static struct seg6_action_param seg6_action_params[SEG6_LOCAL_MAX + 1] = {
+static const struct seg6_action_param seg6_action_params[SEG6_LOCAL_MAX + 1] = {
 	[SEG6_LOCAL_SRH] = { .parse = parse_nla_srh,
 			     .put = put_nla_srh,
 			     .cmp = cmp_nla_srh,
@@ -851,7 +851,7 @@ static struct seg6_action_param seg6_action_params[SEG6_LOCAL_MAX + 1] = {
 static void destroy_attrs(unsigned long parsed_attrs, int max_parsed,
 			  struct seg6_local_lwt *slwt)
 {
-	struct seg6_action_param *param;
+	const struct seg6_action_param *param;
 	int i;
 
 	for (i = SEG6_LOCAL_SRH; i < max_parsed; ++i) {
@@ -874,7 +874,7 @@ static int parse_nla_optional_attrs(struct nlattr **attrs,
 {
 	struct seg6_action_desc *desc = slwt->desc;
 	unsigned long parsed_optattrs = 0;
-	struct seg6_action_param *param;
+	const struct seg6_action_param *param;
 	int err, i;
 
 	for (i = SEG6_LOCAL_SRH; i < SEG6_LOCAL_MAX + 1; ++i) {
@@ -913,7 +913,7 @@ parse_optattrs_err:
  */
 static int parse_nla_action(struct nlattr **attrs, struct seg6_local_lwt *slwt)
 {
-	struct seg6_action_param *param;
+	const struct seg6_action_param *param;
 	struct seg6_action_desc *desc;
 	unsigned long invalid_attrs;
 	int i, err;
@@ -1033,7 +1033,7 @@ err:
 static int seg6_local_encap_build_msg(struct nl_msg *msg, void *priv)
 {
 	struct seg6_local_lwt *slwt = priv;
-	struct seg6_action_param *param;
+	const struct seg6_action_param *param;
 	unsigned long attrs;
 	int i, err;
 
@@ -1059,7 +1059,7 @@ nla_put_failure:
 static int seg6_local_encap_compare(void *a, void *b)
 {
 	struct seg6_local_lwt *slwt_a, *slwt_b;
-	struct seg6_action_param *param;
+	const struct seg6_action_param *param;
 	unsigned long attrs_a, attrs_b;
 	int i;
 
@@ -1116,7 +1116,7 @@ static const char *format_action_type(int action)
 static void seg6_local_encap_dump(void *priv, struct nl_dump_params *dp)
 {
 	struct seg6_local_lwt *slwt;
-	struct seg6_action_param *param;
+	const struct seg6_action_param *param;
 	unsigned long attrs;
 	int i;
 
