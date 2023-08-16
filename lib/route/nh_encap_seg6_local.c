@@ -15,11 +15,7 @@
 #include "seg6.h"
 #include "nl-aux-core/nl-core.h"
 
-#ifndef BIT
-#define BIT(nr) (1ul << (nr))
-#endif /* BIT */
-
-#define SEG6_F_ATTR(i) BIT(i)
+#define SEG6_F_ATTR(i) _NL_BIT(i)
 #define SEG6_F_LOCAL_COUNTERS SEG6_F_ATTR(SEG6_LOCAL_COUNTERS)
 
 struct nh_encap_ops seg6_local_encap_ops;
@@ -183,7 +179,7 @@ struct seg6_local_counters {
 #define next_csid_chk_lcnode_fn_bits(flen) next_csid_chk_lcblock_bits(flen)
 
 /* Supported Flavor operations are reported in this bitmask */
-#define SEG6_LOCAL_FLV_SUPP_OPS (BIT(SEG6_LOCAL_FLV_OP_NEXT_CSID))
+#define SEG6_LOCAL_FLV_SUPP_OPS (_NL_BIT(SEG6_LOCAL_FLV_OP_NEXT_CSID))
 
 struct seg6_flavors_info {
 	/* Flavor operations */
@@ -618,7 +614,7 @@ static const struct nla_policy
 
 static bool seg6_next_csid_enabled(uint32_t fops)
 {
-	return fops & BIT(SEG6_LOCAL_FLV_OP_NEXT_CSID);
+	return fops & _NL_BIT(SEG6_LOCAL_FLV_OP_NEXT_CSID);
 }
 
 /**
